@@ -1,6 +1,6 @@
 # Object Detection in Low-Light Environments  
 
-This repository presents a comprehensive approach to tackling the challenge of detecting objects in low-light conditions. The project integrates advanced image enhancement using MIRNet with state-of-the-art object detection via YOLO v8n, achieving significant improvements in detection accuracy and reliability.  
+This repository presents a comprehensive approach to tackling the challenge of detecting objects in low-light conditions. The project integrates advanced image enhancement using MIRNet with state-of-the-art object detection via YOLO v8n, reaching an mAP50 of 0.702 on the ExDark dataset.  
 
 ## Abstract  
 
@@ -39,7 +39,7 @@ The ExDark Image Dataset contains 7363 low-light images across 12 object classes
 
 ## Results  
 
-The methodology yielded excellent detection performance across diverse object classes. Notably:  
+The model reached the following detection results across the 12 object classes. Notably:  
 - **mAP50**: 0.702  
 - **Best-performing Class**: "Bus" with mAP50 of 0.904.
 
@@ -52,6 +52,10 @@ The methodology yielded excellent detection performance across diverse object cl
 - **Precision-Recall Curve**: Highlights model efficiency in detecting objects across varying confidence thresholds.  
 - **Confusion Matrix**: Demonstrates class-wise detection accuracy.  
 - **F1 Score**: Provides a balanced assessment of precision and recall.  
+
+## Limitations
+
+- The same YOLO v8n was not trained and evaluated on the raw, unenhanced dark images, so how much of the 0.702 comes from the MIRNet enhancement is not measured here.
 
 ## Requirements  
 
