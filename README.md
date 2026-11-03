@@ -53,9 +53,23 @@ The model reached the following detection results across the 12 object classes. 
 - **Confusion Matrix**: Demonstrates class-wise detection accuracy.  
 - **F1 Score**: Provides a balanced assessment of precision and recall.  
 
+## Raw-Image Baseline
+
+The same YOLO v8n (COCO-pretrained start, 50 epochs, batch 32, 512 px) was also trained on the raw, unenhanced images, on a Tesla T4 (1.33 hours), and evaluated on its validation images:
+
+| Input images | mAP50 | Precision | Recall | mAP50-95 |
+|---|---|---|---|---|
+| MIRNet-enhanced (published weights) | 0.701 | 0.770 | 0.607 | 0.442 |
+| Raw (no enhancement) | **0.742** | 0.778 | 0.659 | 0.475 |
+
+The raw images scored higher on every metric, so this project gives no evidence that MIRNet enhancement improves detection accuracy. Raw per-class mAP50 ranges from 0.542 (table) to 0.882 (bus).
+
 ## Limitations
 
-- The same YOLO v8n was not trained and evaluated on the raw, unenhanced dark images, so how much of the 0.702 comes from the MIRNet enhancement is not measured here.
+- The two rows are close but not an exact comparison: the raw run used a seeded random 80/15/5 split (5,890 train, 1,104 validation, 369 test images) of the 7,363 ExDark images, and the enhanced run used the project's own split, with Ultralytics 8.2.2 against 8.4.198 for the raw run.
+- Each number is a single training run, so a gap of about 0.04 mAP50 could partly be run-to-run variation.
+- The raw run's test split (369 images) was not evaluated.
+- Raw images were used as the model's input, so the enhancement may still look better to a person even though it did not raise the detector's score.
 
 ## Requirements  
 
